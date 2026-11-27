@@ -82,10 +82,9 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .text-link { display: inline-flex; align-items: center; gap: 10px; padding: 0 0 5px; border: 0; border-bottom: 1px solid #aeb1a6; background: transparent; font-size: 10px; cursor: pointer; transition: color .2s; }
 .text-link:hover { color: var(--green); }
 .text-link .icon { width: 15px; height: 15px; }
-.category-grid { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 17px; }
+.category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
 .category-card { position: relative; min-width: 0; height: 355px; padding: 0; overflow: hidden; border: 0; background: #e8e6dc; text-align: left; cursor: pointer; }
 .category-card img { height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
-.category-large img { object-position: 50% 35%; }
 .category-card:hover img { transform: scale(1.045); }
 .category-shade { position: absolute; inset: 35% 0 0; background: linear-gradient(transparent,rgba(23,26,22,.55)); }
 .category-title { position: absolute; bottom: 26px; left: 25px; display: grid; gap: 7px; color: white; font-family: var(--serif); font-size: 25px; }
@@ -96,7 +95,11 @@ h1 em, h2 em { color: var(--green); font-weight: 500; }
 .products-section { padding-top: 74px; padding-bottom: 105px; background: var(--cream); max-width: none; }
 .products-section > .section-heading, .products-section > .product-grid, .products-section > .results-message, .products-section > .empty-state { max-width: 1200px; margin-right: auto; margin-left: auto; }
 .product-heading { align-items: flex-end; }
-.product-controls { display: flex; align-items: center; gap: 25px; }
+.product-controls { display: flex; align-items: center; gap: 20px; }
+.gender-filter-list { display: flex; align-items: center; gap: 3px; padding-right: 13px; border-right: 1px solid #d9d9cf; }
+.gender-filter-chip { padding: 8px 10px; border: 0; color: #777a71; background: transparent; font-size: 10px; cursor: pointer; transition: color .2s; }
+.gender-filter-chip:hover, .gender-filter-chip.is-active { color: var(--green-dark); }
+.gender-filter-chip.is-active { font-weight: 700; }
 .filter-list { display: flex; align-items: center; gap: 7px; }
 .filter-chip { min-width: 56px; padding: 9px 13px; border: 1px solid transparent; border-radius: 25px; color: #666b60; background: transparent; font-size: 10px; cursor: pointer; transition: all .2s; }
 .filter-chip:hover { border-color: #d3d5ca; }
@@ -212,8 +215,10 @@ body.drawer-open { overflow: hidden; }
   .benefits { padding-right: 5%; padding-left: 5%; grid-template-columns: repeat(3,1fr); gap: 18px; }
   .benefit-note { display: none; }
   .section-wrap { padding-right: 6%; padding-left: 6%; }
-  .category-card { height: 300px; }
+  .category-card { height: 285px; }
   .product-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .product-heading { align-items: flex-start; flex-direction: column; }
+  .product-controls { justify-content: space-between; width: 100%; }
   .story-copy { padding-right: 9%; padding-left: 10%; }
 }
 @media (max-width: 760px) {
@@ -256,13 +261,14 @@ body.drawer-open { overflow: hidden; }
   .section-heading > .text-link { margin-top: 25px; white-space: nowrap; }
   .category-grid { grid-template-columns: 1fr 1fr; gap: 11px; }
   .category-card { height: 240px; }
-  .category-large { grid-column: span 2; height: 270px; }
   .category-title { bottom: 17px; left: 16px; font-size: 21px; }
   .category-title small { font-size: 8px; }
   .category-arrow { right: 14px; bottom: 17px; width: 28px; height: 28px; }
   .products-section { padding-top: 60px; padding-bottom: 70px; }
   .product-heading { display: block; }
-  .product-controls { justify-content: space-between; gap: 10px; margin-top: 21px; }
+  .product-controls { align-items: flex-start; flex-direction: column; gap: 9px; margin-top: 21px; }
+  .gender-filter-list { padding-right: 0; border-right: 0; }
+  .gender-filter-chip { padding: 7px 12px; }
   .filter-list { gap: 2px; }
   .filter-chip { min-width: 47px; padding: 8px 10px; font-size: 9px; }
   .all-products-link { display: none; }
@@ -295,7 +301,6 @@ body.drawer-open { overflow: hidden; }
   .announcement { font-size: 7px; }
   .hero-visual { min-height: 370px; }
   .category-card { height: 205px; }
-  .category-large { height: 230px; }
   .product-meta { display: block; }
   .product-price { margin-top: 5px; }
   .filter-chip { min-width: 42px; padding-right: 8px; padding-left: 8px; }
